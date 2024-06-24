@@ -51,4 +51,91 @@ app.get('/products', (req, res) => {
     res.json(filteredProducts);
 })
 
+
+let orders = [
+    {
+      "order_id": 1,
+      "customer_id": 101,
+      "total_price": 250.75,
+      "status": "completed",
+      "created_at": "2024-06-20T14:48:00.000Z"
+    },
+    {
+      "order_id": 2,
+      "customer_id": 102,
+      "total_price": 150.00,
+      "status": "pending",
+      "created_at": "2024-06-21T09:20:00.000Z"
+    },
+    {
+      "order_id": 3,
+      "customer_id": 103,
+      "total_price": 99.99,
+      "status": "shipped",
+      "created_at": "2024-06-19T11:30:00.000Z"
+    },
+    {
+      "order_id": 4,
+      "customer_id": 104,
+      "total_price": 450.50,
+      "status": "cancelled",
+      "created_at": "2024-06-18T15:15:00.000Z"
+    },
+    {
+      "order_id": 5,
+      "customer_id": 105,
+      "total_price": 299.99,
+      "status": "completed",
+      "created_at": "2024-06-20T10:45:00.000Z"
+    }
+]
+
+app.get('/orders', (req, res) => {
+    res.json(orders);
+})
+
+  
+
+app.post('/orders', (req, res) => {
+    const {order_id, customer_id, total_price, status,  created_at} = req.body;
+
+    const newOrder = {
+        order_id: orders.length + 1, 
+        customer_id, total_price, status,  created_at
+    }
+
+    orders.push(newOrder);
+    res.status(201).json(newOrder);
+})
+  // may have to change total price later
+
+// editing an existing order
+app.put('/orders/:order_id', (req, res) => {
+    const { order_id } = req.params;
+    const orderIndex = orders.findIndex(order => order.order_id === parseInt(order_id));
+
+    if(orderIndex !== -1) {
+        const updatedOrderInfo = req.body;
+        orders[orderIndex] = {...orders[orderIndex], ...updatedOrderInfo }
+        res.json(orders[orderIndex])
+    } else {
+        res.status(404).json({ error: 'Order not found' });
+    }
+})
+
+// delete
+app.delete('/orders/:order_id', (req, res) => {
+    const { order_id } = req.params;
+    const initialLength = orders.length;
+    orders = orders.filter(order => order.order_id !== parseInt(order_id));
+ 
+    if(orders.length < initialLength) {
+        res.status(204).send()
+    } else {
+        res.status(404).json({ error: 'Order not found' });
+    }
+})
+
+
+
 app.listen(3000, () => console.log(`Server is running on http://localhost:${port}`));
