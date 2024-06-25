@@ -2,14 +2,26 @@ const { PrismaClient } = require("@prisma/client");
 const prisma = new PrismaClient();
 
 // get all products
-// Function gets all the cars
-const getAllProducts = async () => {
-    return prisma.product.findMany();
+const getAllProducts = async (filter = {}, orderBy = {}) => {
+    return prisma.product.findMany({
+        include: {
+            orderItems: true
+        },
+        where: filter,
+        orderBy: orderBy
+    });
   };
+
+
+
+  // where - conditions that returned stuff must meet
+  // orderBy - order in which they should be returned
 
 // get product by ID
 const getProductById = async (id) => {
-    return prisma.product.findUnique({ where: { id: parseInt(id) } });
+    return prisma.product.findUnique({ where: { id: parseInt(id) }, include: {
+        orderItems: true
+    } });
 };
 
 // create new product

@@ -3,13 +3,37 @@ const productModel = require('../models/product');
 
 // function gets all products
 const getAllProducts = async (req, res) => {
+
+  const {category, sort} = req.query;
+  let filter = {};
+  let orderBy = {};
+
+  
+
+  if(category) {
+    filter.category = {
+      equals: category, 
+      mode: 'insensitive'
+    }
+  }
+
+
+  if(sort) {
+    if(sort === 'price') {
+      orderBy.price = 'asc'
+    } else if (sort === 'name') {
+      orderBy.name = 'asc'
+    }
+  }
+
     try {
-        const products = await productModel.getAllProducts();
+        const products = await productModel.getAllProducts(filter, orderBy);
         res.status(200).json(products);
     } catch (error) {
         res.status(400).json({ error: error.message });
     }
 };
+
 
 // get product by ID
 const getProductById = async (req, res) => {
@@ -53,7 +77,7 @@ const updateProduct = async (req, res) => {
   //Function to delete a product
 const deleteProduct = async (req, res) => {
     try {
-      const deleteProduct = await productModelModel.deleteProduct(req.params.id);
+      const deleteProduct = await productModel.deleteProduct(req.params.id);
       if (deleteProduct) {
         res.status(200).json(deleteProduct);
       } else {

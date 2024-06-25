@@ -5,6 +5,8 @@ const morgan = require("morgan");
 
 //import the productRoutes
 const productRoutes = require("../routes/productRoutes");
+const orderRoutes = require('../routes/orderRoutes');
+const orderItemRoutes = require('../routes/orderItemRoutes');
 
 // Middleware
 const app = express();
@@ -18,6 +20,8 @@ app.get("/", (req, res) => {
 
 //add product routes here
 app.use("/products", productRoutes);
+app.use('/orders', orderRoutes);
+app.use('/orderItems', orderItemRoutes);
 
 app.listen(port, () => {
   console.log(`Server is up and running on PORT: ${port}`);
