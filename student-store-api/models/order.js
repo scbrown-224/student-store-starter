@@ -134,9 +134,21 @@ const updateOrder = async (order_id, orderData) => {
   });
 };
 
-// delete an order
+// // delete an order
+// const deleteOrder = async (order_id) => {
+//   console.log(order_id);
+//   return prisma.order.delete({ where: { order_id: parseInt(order_id) }, 
+//  });
+// };
+
+// delete an order and its associated items
 const deleteOrder = async (order_id) => {
-  return prisma.order.delete({ where: { order_id: parseInt(order_id) } });
+  return prisma.$transaction(async (prisma) => {
+    await prisma.orderItem.deleteMany({
+      where: { order_id: parseInt(order_id) },
+    });
+    return prisma.order.delete({ where: { order_id: parseInt(order_id) } });
+  });
 };
 
 // add an item to an existing order
