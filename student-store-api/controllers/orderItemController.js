@@ -1,5 +1,7 @@
 const orderItemModel = require('../models/orderItem');
 
+
+
 const getAllOrderItems = async (req, res) => {
   try {
     const orderItems = await orderItemModel.getAllOrderItems();
@@ -64,5 +66,6 @@ module.exports = {
   createOrderItem,
   updateOrderItem,
   deleteOrderItem,
+
 };
 

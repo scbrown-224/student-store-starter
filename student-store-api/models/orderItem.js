@@ -29,6 +29,7 @@ const deleteOrderItem = async (order_item_id) => {
   return prisma.orderItem.delete({ where: { order_item_id: parseInt(order_item_id) } }); // Adjusted to match your model name 'orderItem'
 };
 
+
 module.exports = {
   getAllOrderItems,
   getOrderItemById,
