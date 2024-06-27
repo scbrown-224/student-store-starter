@@ -149,10 +149,14 @@ const deleteOrder = async (order_id) => {
     });
     return prisma.order.delete({ where: { order_id: parseInt(order_id) } });
   });
+
+  // $transaction method executes multiple database operations
+  // as a single unit of work. all or nothing
 };
 
 // add an item to an existing order
 const addToExistingOrder = async (order_id, orderData) => {
+  console.log(orderData);
   const product = await prisma.product.findUnique({ where: { id: orderData.product_id } });
   const order = await prisma.order.findUnique({ where: { order_id: parseInt(order_id) } });
 
