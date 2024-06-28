@@ -56,7 +56,8 @@ Deployed Application (optional): n/a
 
 ### Walkthrough Video
 
-`TODO://` Add the embedded URL code to your animated app walkthrough below, `ADD_EMBEDDED_CODE_HERE`. Make sure the video or gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after adding walkthrough video)
+
+Photograph of my prisma.schema model setup: https://drive.google.com/file/d/1K8WbPXcUW6MZvIwM9ixblJH50gm8yQNZ/view?usp=sharing
 
 <div>
     <a href="https://www.loom.com/share/51e63a9b54124152af7089504075a980">
