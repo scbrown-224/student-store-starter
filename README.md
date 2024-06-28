@@ -72,15 +72,15 @@ Photograph of my prisma.schema model setup: https://drive.google.com/file/d/1K8W
 
 * Did the topics discussed in your labs prepare you to complete the assignment? Be specific, which features in your weekly assignment did you feel unprepared to complete?
 
-Add your response here
+Yes, the conversations and topics we discussed in class really did relate to the project. I felt like this was different in that we weren't building upon previous lectures, starting from scratch with backend. However, the curated morning review sessions and Devarsh's review videos related very well and helped me complete the project
 
 * If you had more time, what would you have done differently? Would you have added additional features? Changed the way your project responded to a particular event, etc.
   
-Add your response here
+I definetely would take time to further comment my code. I relied heavily on my peers and review to complete, and I often need repition to truly understand. So taking the time to go through and comment so I can study it later and use it in my capstone would be helpful. 
 
 * Reflect on your project demo, what went well? Were there things that maybe didn't go as planned? Did you notice something that your peer did that you would like to try next time?
 
-Add your response here
+I remembered mid presentation that I hadn't fixed my cascading delete error for products, and that was the model in which I chose to present my CRUD operations, so I had an awkward moment where I said I was going to demonstrate something but I didn't. I liked how peers added to the template and were different
 
 ### Open-source libraries used
 
@@ -88,7 +88,7 @@ Add your response here
 
 ### Shout out
 
-Give a shout out to somebody from your cohort that especially helped you during your project. This can be a fellow peer, instructor, TA, mentor, etc.
+SHOUT OUT ANDY, MORGAN, AHMED, CHRIS, LUCKY, KIAHNA
 
 
 
