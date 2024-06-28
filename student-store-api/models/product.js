@@ -38,9 +38,26 @@ const updateProduct = async (id, productData) => {
 };
 
 // delete product
+// const deleteProduct = async (id) => {
+//     return prisma.product.delete({ where: { id: parseInt(id) } });
+// };
+
 const deleteProduct = async (id) => {
-    return prisma.product.delete({ where: { id: parseInt(id) } });
+    return prisma.$transaction(async (prisma) => {
+        // Delete related order items first
+        await prisma.orderItem.deleteMany({
+            where: { product_id: parseInt(id) },
+        });
+        // Delete the product
+        return prisma.product.delete({
+            where: { id: parseInt(id) },
+        });
+    });
 };
+
+
+
+
 
 // export the functions
 module.exports = {
